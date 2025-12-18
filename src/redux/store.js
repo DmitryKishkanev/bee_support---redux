@@ -32,41 +32,18 @@
 // });
 
 import { configureStore } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-
-const myValueSlice = createSlice({
-  name: 'myValue',
-  initialState: 0,
-  reducers: {
-    increment(state, action) {
-      return state + action.payload;
-    },
-    decrement(state, action) {
-      return state - action.payload;
-    },
-  },
-});
-
-export const { increment, decrement } = myValueSlice.actions;
-
-const itemsSlice = createSlice({
-  name: 'items',
-  initialState: [],
-  reducers: {
-    add(state, action) {
-      return state.push(action.payload);
-    },
-    remove(state, action) {
-      return state.filter(item => item.id !== action.payload);
-    },
-  },
-});
-
-export const { add, remove } = itemsSlice.actions;
+import logger from 'redux-logger'; // для middleware
+import { myValueSlice } from './myValue/slice';
+import { itemsSlice } from './items/slice';
+import { userSlice } from './user/slice';
 
 export const store = configureStore({
   reducer: {
     myValue: myValueSlice.reducer,
     items: itemsSlice.reducer,
+    user: userSlice.reducer,
   },
+  // Сначала установить npm i -D redux-logger
+  // Для логирования action в консоль
+  middleware: getDefaultMiddleware => [...getDefaultMiddleware(), logger],
 });
