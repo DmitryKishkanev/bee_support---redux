@@ -32,34 +32,39 @@
 // });
 
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import logger from 'redux-logger'; // для middleware
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+// import logger from 'redux-logger'; // для middleware
 import { myValueSlice } from './myValue/slice';
 import { itemsSlice } from './items/slice';
 import { userSlice } from './user/slice';
-import { clicksSlice } from './value/slice';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-const persistedClicksReducer = persistReducer(
-  persistConfig,
-  clicksSlice.reducer,
-);
+import { clicksReducer } from './value/slice';
 
 export const store = configureStore({
   reducer: {
     myValue: myValueSlice.reducer,
     items: itemsSlice.reducer,
     user: userSlice.reducer,
-    clicks: persistedClicksReducer,
+    clicks: clicksReducer,
+  },
+
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    });
   },
   // Сначала установить npm i -D redux-logger
   // Для логирования action в консоль
-  middleware: getDefaultMiddleware => [...getDefaultMiddleware(), logger],
+  // middleware: getDefaultMiddleware => [...getDefaultMiddleware(), logger],
 });
 
 export const persistor = persistStore(store);

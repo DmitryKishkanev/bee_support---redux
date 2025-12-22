@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import useLogOutRedirect from 'hooks/useLogOutRedirect';
-import { update } from '../redux/value/slice';
+import { update, getClicksValue } from '../redux/value/slice';
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
-  const numberOfClicks = useSelector(state => state.clicks.value);
+  const numberOfClicks = useSelector(getClicksValue);
 
   useLogOutRedirect();
 
