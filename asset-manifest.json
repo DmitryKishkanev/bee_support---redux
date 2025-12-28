@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/bee_support_redux-persist-lecture/static/css/main.24aaeacf.css",
+    "main.js": "/bee_support_redux-persist-lecture/static/js/main.4ef35748.js",
+    "static/media/background-image.jpg": "/bee_support_redux-persist-lecture/static/media/background-image.eefa42dbfddba2be9b7b.jpg",
+    "index.html": "/bee_support_redux-persist-lecture/index.html",
+    "main.24aaeacf.css.map": "/bee_support_redux-persist-lecture/static/css/main.24aaeacf.css.map",
+    "main.4ef35748.js.map": "/bee_support_redux-persist-lecture/static/js/main.4ef35748.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.24aaeacf.css",
+    "static/js/main.4ef35748.js"
+  ]
+}
